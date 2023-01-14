@@ -29,7 +29,6 @@ def frutify():
 for description in descfiles:
     # 'supplier-data/descriptions/'
     path = os.path.join(descdir, description)
-    print(path)
     with open(path, "r") as opened:
 
         line_counter = 3
@@ -49,6 +48,10 @@ for description in descfiles:
 
         fruits.append(fruit)
 
+def send_fruit():
+    return fruits
+'''
 for fruit in fruits:
     r = requests.post(url, data=fruit)
     print(r.status_code)
+    '''
