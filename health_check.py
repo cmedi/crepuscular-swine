@@ -24,7 +24,7 @@ if psutil.disk_usage('/').percentage >= 80:
     emails.generate_email(sender, receiver, 'Error - Available disk space is less than 20%', 'Available disk space is lower than 20%', attachment=None)
 
 #Report an error if available memory is less than 500MB
-THRESHOLD = 500* 1024 * 1024
+THRESHOLD = 500 * 1024 * 1024
 if psutil.virtual_memory().available <= THRESHOLD:
     emails.generate_email(sender, receiver, 'Error - Available memory is less than 500MB', 'available memory is less than 500MB', attachment=None)
 

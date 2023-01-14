@@ -49,8 +49,7 @@ for description in descfiles:
 
 def send_fruit():
     return fruits
-'''
+
 for fruit in fruits:
     r = requests.post(url, data=fruit)
     print(r.status_code)
-    '''
