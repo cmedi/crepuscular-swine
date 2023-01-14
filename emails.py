@@ -15,7 +15,8 @@ def generate_email(from_, to, subject, body, attachment=None):
 
     message.set_content(body)
     #Process the attachment and add it to the email
-    if attachment is not None:
+    
+    if attachment !=  None:
         attachment_filename = os.path.basename(attachment)
         mime_type, _ = mimetypes.guess_type(attachment)
         mime_type, mime_subtype = mime_type.split('/', 1)
@@ -26,7 +27,7 @@ def generate_email(from_, to, subject, body, attachment=None):
             filename=attachment_filename)
     return message
 
-def send_email( message ):
+def send_email( message_to_send ):
     
     mail_server = smtplib.SMTP('localhost')
     mail_server.send(message)

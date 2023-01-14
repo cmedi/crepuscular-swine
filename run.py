@@ -5,13 +5,14 @@ import os
 import requests
 import os.path
 import pprint
+import json 
 
-url = r"http://linux-instance-external-IP/fruits"
+url = r"http://35.222.236.234/fruits/"
 descdir = (
-    r"C:\Users\writi\source\repos\cmedi\crepuscular-swine\supplier-data\descriptions"
+    r"supplier-data/descriptions/"
 )
 
-
+print(os.path.exists(descdir))
 fruits = []
 
 descfiles = os.listdir(descdir)
@@ -19,10 +20,6 @@ descfiles = os.listdir(descdir)
 def normalize(weight):
     normalized = re.sub(r"\D", "", weight)
     return normalized
-
-
-def frutify():
-    return fruit
 
 
 for description in descfiles:
