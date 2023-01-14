@@ -1,26 +1,5 @@
-
-'''
-Processed Update on <Today's date>
-
-[blank line]
-
-name: Apple
-
-weight: 500 lbs
-
-[blank line]
-
-name: Avocado
-
-weight: 200 lbs
-
-[blank line]
-
-'''
-
-# read all into 1 string
-
 #!/usr/bin/env python3
+
 from datetime import datetime
 import time
 from datetime import date
