@@ -1,33 +1,54 @@
 #!/usr/bin/env python3
 
-import pprint
-from re import I
-import requests
-import os
-import os.path
 
-url = r'http://linux-instance-external-IP/fruits'
-descdir = 'supplier-data/descriptions/'
-imgdir = 'supplier-data/images/'
+import re
+import os
+import requests
+import os.path
+import pprint
+
+url = r"http://linux-instance-external-IP/fruits"
+descdir = (
+    r"C:\Users\writi\source\repos\cmedi\crepuscular-swine\supplier-data\descriptions"
+)
+
 
 fruits = []
-fruit = {'name':'', 'weight':0, 'description':'', 'image_name':''}
 
 descfiles = os.listdir(descdir)
-imgfiles = os.listdir(imgdir)
-fruit_counter = 0
+
+def normalize(weight):
+    normalized = re.sub(r"\D", "", weight)
+    return normalized
+
+
+def frutify():
+    return fruit
 
 
 for description in descfiles:
-    print(description)
-    path = os.path.join(descdir,description)
-    with open(path, 'r') as opened:
-        fruity = []
+    # 'supplier-data/descriptions/'
+    path = os.path.join(descdir, description)
+    print(path)
+    with open(path, "r") as opened:
+
+        line_counter = 3
+        fruit = {"name": "", "weight": 0, "description": "", "image_name": ""}
         for line in opened:
-           fruity.append(line.strip())
-        fruit['name'] = fruity[0]
-        fruit['weight'] = fruity[1]
-        fruit['description'] = fruity[2]
-        fruit['image_name'] = os.path.basename(path.replace('.txt','.jpeg'))
-        print(fruit)
-        
+            fruit["image_name"] = os.path.basename(path.replace(".txt", ".jpeg"))
+            if line_counter == 3:
+                fruit["name"] = line
+                line_counter -= 1
+            elif line_counter == 2:
+                fruit["weight"] = normalize(line)
+                line_counter -= 1
+            elif line_counter == 1:
+                fruit["description"] = line
+                line_counter -= 1
+        line_counter = 3
+
+        fruits.append(fruit)
+
+for fruit in fruits:
+    r = requests.post(url, data=fruit)
+    print(r.status_code)
