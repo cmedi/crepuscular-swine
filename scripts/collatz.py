@@ -27,4 +27,5 @@ if __name__ == "__main__":
         collatz( user_input )
      
     except Exception:
-        print('i really meant it about the integer \n ')
+        print('I really meant it about the integer \n ')
+        main()
